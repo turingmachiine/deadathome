@@ -1,0 +1,27 @@
+/*********************************************************************************
+
+	Template Name: Boighor Bookshop Responsive Bootstrap4 Template  
+	Version: 1.0
+	Note: This is plugins css. All plugins css files import here.
+
+**********************************************************************************/
+
+@import url(/static/css/plugins/font-awesome.min.css);
+@import url(/static/css/plugins/bicon.min.css);
+@import url(/static/css/plugins/pe-icon-7-stroke.css);
+@import url(/static/css/plugins/slick.min.css);
+@import url(/static/css/plugins/fakeloader.css);
+@import url(/static/css/plugins/nivo-slider.css);
+@import url(/static/css/plugins/nivo-preview-2.css);
+
+@import url(/static/css/plugins/owl.carousel.min.css);
+@import url(/static/css/plugins/owl.theme.default.min.css);
+
+@import url(/static/css/plugins/material-design-iconic-font.min.css);
+@import url(/static/css/plugins/animation.css);
+@import url(/static/css/plugins/fancybox.css);
+@import url(/static/css/plugins/mainmenu.css);
+@import url(/static/css/plugins/fotorama.css);
+@import url(/static/css/plugins/simple-line-icons.css);
+@import url(/static/css/plugins/jquery-ui.min.css);
+@import url(/static/css/plugins/lightbox.css);

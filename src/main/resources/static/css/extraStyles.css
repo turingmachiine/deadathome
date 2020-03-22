@@ -1,0 +1,41 @@
+.blue-style-for-vk-menu {
+    background-color: rgb(76, 113, 160);
+
+}
+
+.blue-style-for-vk-dark {
+    background-color: #1d4774;
+
+}
+
+.border-search-dark {
+    border: #1d4774;
+    border-radius: 16px/15px;
+
+}
+
+.width-230px {
+    width: 230px;
+}
+
+.ml-8 {
+    margin-left: 260px;
+}
+
+.mr-8 {
+    margin-right: 260px;
+}
+
+.h-43px {
+    height: 43px;
+}
+
+.max-w-100pr{
+    width: 100%;
+    overflow: hidden
+}
+
+.h-28px {
+    height: 28px;
+}
+

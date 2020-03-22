@@ -1,0 +1,1 @@
+Hello, open this link to confirm email http://localhost:8000/confirm/${confirm_code}!
