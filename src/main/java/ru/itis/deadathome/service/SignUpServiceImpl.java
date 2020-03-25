@@ -4,10 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import ru.itis.deadathome.dto.SignUpDto;
+import ru.itis.deadathome.models.FileInfo;
 import ru.itis.deadathome.models.Role;
 import ru.itis.deadathome.models.State;
 import ru.itis.deadathome.models.User;
+import ru.itis.deadathome.repositories.FileInfoRepository;
 import ru.itis.deadathome.repositories.UsersRepository;
+import ru.itis.deadathome.util.FileStorageUtil;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -23,10 +26,13 @@ public class SignUpServiceImpl implements SignUpService {
     private EmailService emailService;
 
     @Autowired
+    FileStorageService fileStorageService;
+    @Autowired
     private ExecutorService executorService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
 
     @Override
     public void signUp(SignUpDto form) {
@@ -38,9 +44,9 @@ public class SignUpServiceImpl implements SignUpService {
                 .createdAt(LocalDateTime.now())
                 .state(State.NOT_CONFIRMED)
                 .role(Role.USER)
+                .profilePic(fileStorageService.saveFile(form.getProfilePic()))
                 .confirmCode(UUID.randomUUID().toString())
                 .build();
-
         usersRepository.save(user);
 
         executorService.submit(() ->

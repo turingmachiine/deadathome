@@ -23,7 +23,11 @@ public class User {
     private String lastName;
     private String email;
     private String hashPassword;
-    private String profilePic;
+
+    @ManyToOne
+    @JoinColumn(name = "storageFileName")
+    private FileInfo profilePic;
+
     private LocalDateTime createdAt;
 
     @Enumerated(value = EnumType.STRING)

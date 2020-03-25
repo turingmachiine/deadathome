@@ -12,15 +12,14 @@
                         <h3 class="account__title">Регистрация</h3>
                         <form action="/signUp" method="post" enctype="multipart/form-data">
                             <div class="account__form">
-                                <#--<div class="image-container">
+                                <div class="image-container">
                                     <img src="http://placehold.it/150x150" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
                                     <div class="middle">
                                         <input type="button" class="btn btn-secondary" id="btnChangePicture" value="Добавить" >
-                                        <input type="file" style="display: none;" id="profilePicture" name="file" />
+                                        <input type="file" style="display: none;" name="profilePic" id="profilePicture" name="file" />
                                         <br><input type="button" class="btn btn-secondary btn-sm mt-1 d-none" id="btnDiscard" value="Discard Changes"/>
                                     </div>
                                 </div>
-                                -->
                                 <div class="input__box">
                                     <label>Email<span>*</span></label>
                                     <input name="email" type="email" >
