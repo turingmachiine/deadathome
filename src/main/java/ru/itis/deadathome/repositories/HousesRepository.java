@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public interface HousesRepository extends JpaRepository<House, Long> {
     Optional<House> findByNameIgnoreCase(String name);
+    List<House> findByNameContainsIgnoreCase(String name);
     List<House> findByCreator(User creator);
     List<House> findByCreatorAndIdIsNot(User creator, Long id);
 }

@@ -19,9 +19,9 @@
                         <div class="col-md-6 col-lg-4 col-sm-12 mb-2">
                             <div class="post__itam">
                                 <div class="content">
-                                    <h3><a href="/post?id=${t.id}">${t.title}</a></h3>
+                                    <h3><a href="/post${t.id}">${t.title}</a></h3>
                                     <div class="post__time">
-                                        <span class="day">${t.postDate}</span>
+                                        <span class="day">${t.createdAt}</span>
                                     </div>
                                 </div>
                             </div>

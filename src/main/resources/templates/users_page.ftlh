@@ -33,7 +33,7 @@
         function f() {
             if ($("#query").val().length >= 0) {
                 $.ajax({
-                    url: "/search",
+                    url: "/searchUsers",
                     data: {"name": $("#query").val()},
                     dataType: "json",
                     success: function (msg) {

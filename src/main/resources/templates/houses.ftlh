@@ -81,28 +81,28 @@
     <script type="application/javascript">
         function f() {
                 $.ajax({
-                    url: "/dosearch",
-                    data: {"term": $("#query").val()},
+                    url: "/searchHouses",
+                    data: {"name": $("#query").val()},
                     dataType: "json",
                     success: function (msg) {
-                        if (msg.objects.length > 0) {
+                        if (msg.length > 0) {
                             $("#res").html("");
-                            for (var i = 0; i < msg.objects.length; i++) {
+                            for (var i = 0; i < msg.length; i++) {
 
-                                if (msg.objects[i].image != null) {
-                                    $("#res").append("<div class=\"list__view mb-2\" id=\"resa" + msg.objects[i].id + "\">\n" +
-                                        "                                    <div class=\"thumb\">\n" + "<a class=\"first__img\" href=\"/house?id=" + msg.objects[i].id +
-                                        "\"><img src=\"" + msg.objects[i].image + "\"></a>");
+                                if (msg[i].fileInfo != null) {
+                                    $("#res").append("<div class=\"list__view mb-2\" id=\"resa" + msg[i].id + "\">\n" +
+                                        "                                    <div class=\"thumb\">\n" + "<a class=\"first__img\" href=\"/house" + msg[i].id +
+                                        "\"><img src=\"files/" + msg[i].fileInfo.storageFileName + "\"></a>");
                                 } else {
-                                    $("#res").append("<div class=\"list__view mb-2\" id=\"resa" + msg.objects[i].id + "\">\n" +
-                                        "                                    <div class=\"thumb\">\n" + "<a class=\"first__img\" href=\"/house?id=" + msg.objects[i].id +
+                                    $("#res").append("<div class=\"list__view mb-2\" id=\"resa" + msg[i].id + "\">\n" +
+                                        "                                    <div class=\"thumb\">\n" + "<a class=\"first__img\" href=\"/house" + msg[i].id +
                                         "\"><img src=\"/assets/images/blog/blog-3/1.jpg\"></a>");
                                 }
-                                $("#resa" + msg.objects[i].id).append("<div class=\"content\" id=\"resal" + msg.objects[i].id + "\">" +
-                                    "<h2><a href=\"/house?id=" + msg.objects[i].id +
-                                    "\">" + msg.objects[i].name + "</a></h2>");
-                                if (msg.objects[i].houseClass.id == 1) {
-                                    $("#resal" + msg.objects[i].id).append("<ul class=\"rating d-flex\">\n" +
+                                $("#resa" + msg[i].id).append("<div class=\"content\" id=\"resal" + msg[i].id + "\">" +
+                                    "<h2><a href=\"/house" + msg[i].id +
+                                    "\">" + msg[i].name + "</a></h2>");
+                                if (msg[i].houseClass == "EXCELLENT") {
+                                    $("#resal" + msg[i].id).append("<ul class=\"rating d-flex\">\n" +
                                         "<li class=\"on\"><i class=\"fa fa-star-o\"></i></li>\n" +
                                         "<li class=\"on\"><i class=\"fa fa-star-o\"></i></li>\n" +
                                         "<li class=\"on\"><i class=\"fa fa-star-o\"></i></li>\n" +
@@ -110,8 +110,8 @@
                                         "<li class=\"on\"><i class=\"fa fa-star-o\"></i></li>\n" +
                                         "<li class=\"on\"><i class=\"fa fa-star-o\"></i></li>\n" +
                                         "</ul>\n");
-                                } else if (msg.objects[i].houseClass.id == 2) {
-                                    $("#resal" + msg.objects[i].id).append("<ul class=\"rating d-flex\">\n" +
+                                } else if (msg[i].houseClass == "NORMAL") {
+                                    $("#resal" + msg[i].id).append("<ul class=\"rating d-flex\">\n" +
                                         "                                            <li class=\"on\"><i class=\"fa fa-star-o\"></i></li>\n" +
                                         "                                            <li class=\"on\"><i class=\"fa fa-star-o\"></i></li>\n" +
                                         "                                            <li class=\"on\"><i class=\"fa fa-star-o\"></i></li>\n" +
@@ -119,7 +119,7 @@
                                         "                                            <li><i class=\"fa fa-star-o\"></i></li>\n" +
                                     "</ul>\n");
                                 } else {
-                                    $("#resal" + msg.objects[i].id).append("<ul class=\"rating d-flex\">\n" +
+                                    $("#resal" + msg[i].id).append("<ul class=\"rating d-flex\">\n" +
                                         "<li class=\"on\"><i class=\"fa fa-star-o\"></i></li>\n" +
                                         "                                            <li><i class=\"fa fa-star-o\"></i></li>\n" +
                                         "                                            <li><i class=\"fa fa-star-o\"></i></li>\n" +
@@ -127,7 +127,7 @@
                                         "                                            <li><i class=\"fa fa-star-o\"></i></li>\n" +
                                         "</ul>\n");
                                 }
-                                $("#resal" + msg.objects[i].id).append("<p>" + msg.objects[i].description + "</p>")
+                                $("#resal" + msg[i].id).append("<p>" + msg[i].description + "</p>")
                             }
                         } else {
                             $("#res").html("No results..");

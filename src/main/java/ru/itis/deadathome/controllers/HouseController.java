@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
+import ru.itis.deadathome.dto.HouseCreationDto;
 import ru.itis.deadathome.models.House;
+import ru.itis.deadathome.models.HouseClass;
+import ru.itis.deadathome.models.User;
 import ru.itis.deadathome.security.UserDetailsImpl;
 import ru.itis.deadathome.service.HousesService;
 
@@ -40,5 +42,28 @@ public class HouseController {
         model.addAttribute("house", house);
         model.addAttribute("otherHouses", housesService.getOtherHouses(house.getCreator(), houseId));
         return "house";
+    }
+
+    @GetMapping("/create_house")
+    public String getCreateHousePage(Authentication authentication, Model model) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        model.addAttribute("user", userDetails.getUser());
+        model.addAttribute("classes", HouseClass.values());
+        return "create_house";
+    }
+
+    @PostMapping("/create_house")
+    public String createHouse(Authentication authentication, HouseCreationDto houseDto) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        User user = userDetails.getUser();
+        houseDto.setUser(user);
+        Long id = housesService.create(houseDto);
+        return "redirect:/house" + id;
+    }
+
+    @GetMapping("/searchHouses")
+    @ResponseBody
+    public List<House> searchHouses(@RequestParam("name") String name) {
+        return housesService.search(name);
     }
 }
