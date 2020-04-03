@@ -124,7 +124,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section__title text-center pb--50">
-                            <h1 class="title__be--2">Дед <span class="color--theme">дома </span></h1>
+                            <h1 class="title__be--2">Дед <span class="color--theme"><a href="/houses">дома</a> </span></h1>
                             <p>Давно искал себе место для отличной старости?</p>
                         </div>
                     </div>

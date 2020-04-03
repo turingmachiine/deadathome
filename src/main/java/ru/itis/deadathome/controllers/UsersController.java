@@ -30,7 +30,7 @@ public class UsersController {
         return "users_page";
     }
 
-    @GetMapping("/search")
+    @GetMapping("/searchUsers")
     @ResponseBody
     public List<UserDto> searchUsers(@RequestParam("name") String name) {
         return usersService.search(name);
