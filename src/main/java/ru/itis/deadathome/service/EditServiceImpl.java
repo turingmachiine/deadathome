@@ -30,7 +30,7 @@ public class EditServiceImpl implements EditService {
         user.setEmail(form.getEmail());
         user.setFirstName(form.getFirstName());
         user.setLastName(form.getLastName());
-        if (form.getProfilePic() != null) {
+        if (form.getProfilePic().getSize() != 0) {
             user.setProfilePic(fileStorageService.saveFile(form.getProfilePic()));
         }
         usersRepository.save(user);
