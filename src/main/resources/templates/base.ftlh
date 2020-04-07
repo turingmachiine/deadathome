@@ -2,10 +2,10 @@
 
 <#macro main>
     <html>
+    <#import "spring.ftl" as spring />
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <title><@title/></title>
 
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
@@ -18,7 +18,6 @@
         <link rel="stylesheet" href="css/plugins/owl.carousel.min.css">
 
         <link rel="stylesheet" href="css/custom.css">
-
 
         <script src="js/vendor/modernizr-3.5.0.min.js"></script>
 
@@ -40,13 +39,13 @@
                     <div class="col-lg-8 d-none d-lg-block">
                         <nav class="mainmenu__nav">
                             <ul class="meninmenu d-flex justify-content-start">
-                                <li class="drop with--one--item"><a href="/houses">Дома</a>
+                                <li class="drop with--one--item"><a href="/houses"><@spring.message 'root.page.link_houses'/></a>
                                 </li>
-                                <li class="drop"><a href="/posts">Посты</a>
+                                <li class="drop"><a href="/posts"><@spring.message 'root.page.link_posts'/></a>
                                 </li>
                                 <#if user?has_content>
-                                    <li><a href="/create_house">Добавить дом</a></li>
-                                    <li><a href="/create_post">Добавить пост</a></li>
+                                    <li><a href="/create_house"><@spring.message 'root.page.link_create_house'/></a></li>
+                                    <li><a href="/create_post"><@spring.message 'root.page.link_create_post'/></a></li>
                                 </#if>
                             </ul>
                         </nav>
@@ -60,12 +59,14 @@
                                             <div class="switcher-currency">
                                                 <strong class="label switcher-label">
                                                     <span>${user.firstName}</span>
+                                                    <a href="/?lang=ru"><img src="images/icons/1200px-Flag_of_Russia.svg.png" height="16" width="24"></a>
+                                                    <a href="/?lang=en"><img src="images/icons/Flag_of_the_United_Kingdom.svg" height="16" width="24"></a>
                                                 </strong>
                                                 <div class="switcher-options">
                                                     <div class="switcher-currency-trigger">
                                                         <div class="setting__menu">
-                                                            <span><a href="/profile">Мой аккаунт</a></span>
-                                                            <span><a href="/logout">Выйти</a></span>
+                                                            <span><a href="/profile"><@spring.message 'root.page.my_account'/></a></span>
+                                                            <span><a href="/logout"><@spring.message 'root.page.logout'/></a></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -83,13 +84,21 @@
                                         <div class="content-inner">
                                             <div class="switcher-currency">
                                                 <strong class="label switcher-label">
-                                                    <span>Hello</span>
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <span><@spring.message 'root.page.greeting'/></span>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <a href="/?lang=ru"><img src="images/icons/1200px-Flag_of_Russia.svg.png" height="16" width="24"></a>
+                                                            <a href="/?lang=en"><img src="images/icons/Flag_of_the_United_Kingdom.svg" height="16" width="24"></a>
+                                                        </div>
+                                                    </div>
                                                 </strong>
                                                 <div class="switcher-options">
                                                     <div class="switcher-currency-trigger">
                                                         <div class="setting__menu">
-                                                            <span><a href="/signIn">Войти</a></span>
-                                                            <span><a href="/signUp">Зарегистрироваться</a></span>
+                                                            <span><a href="/signIn"><@spring.message 'root.page.login'/></a></span>
+                                                            <span><a href="/signUp"><@spring.message 'root.page.sign_up'/></a></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -103,29 +112,14 @@
                 </div>
             </div>
         </header>
-        <!-- Start Search Popup -->
-        <div class="brown--color box-search-content search_active block-bg close__top">
-            <form id="search_mini_form" class="minisearch" action="#">
-                <div class="field__search">
-                    <input type="text" placeholder="Search entire store here...">
-                    <div class="action">
-                        <a href="#"><i class="zmdi zmdi-search"></i></a>
-                    </div>
-                </div>
-            </form>
-            <div class="close__wrap">
-                <span>close</span>
-            </div>
-        </div>
-        <!-- End Search Popup -->
         <!-- Start Slider area -->
         <section class="best-seel-area pt--80">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section__title text-center pb--50">
-                            <h1 class="title__be--2">Дед <span class="color--theme"><a href="/houses">дома</a> </span></h1>
-                            <p>Давно искал себе место для отличной старости?</p>
+                            <h1 class="title__be--2"> <@spring.message 'root.page.app_name_first'/> <span class="color--theme"><a href="/houses"><@spring.message 'root.page.app_name_second'/></a> </span></h1>
+                            <p><@spring.message 'root.page.app_name_lower'/></p>
                         </div>
                     </div>
                 </div>
@@ -133,6 +127,7 @@
         </section>
 
         <@content/>
+
         <footer id="wn__footer" class="footer__area bg__cat--8 brown--color">
             <div class="footer-static-top">
                 <div class="container">
@@ -140,16 +135,18 @@
                         <div class="col-lg-12">
                             <div class="footer__widget footer__menu">
                                 <div class="ft__logo">
-                                    <a href="/">
+                                    <a href="https://ampl.ink/dV1Yx">
                                         <img src="images/logo6.png" alt="logo">
                                     </a>
-                                    <p>Я артист слушайте мои треки пожалуйста</p>
+                                    <p><a href="https://ampl.ink/dV1Yx"><@spring.message 'root.page.footer_text'/></a></p>
                                 </div>
                                 <div class="footer__content">
                                     <ul class="mainmenu d-flex justify-content-center">
-                                        <li><a href="/houses">Дома</a></li>
-                                        <li><a href="/posts">Посты</a></li>
-                                        <li><a href="/profile">Профиль</a></li>
+                                        <li><a href="/houses"><@spring.message 'root.page.link_houses'/></a></li>
+                                        <li><a href="/posts"><@spring.message 'root.page.link_posts'/></a></li>
+                                        <#if user?has_content>
+                                            <li><a href="/profile"><@spring.message 'root.page.my_account'/></a></li>
+                                        </#if>
                                     </ul>
                                 </div>
                             </div>

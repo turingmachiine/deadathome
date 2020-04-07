@@ -1,6 +1,6 @@
 <#include "base.ftlh">
 
-<#macro title>Houses</#macro>
+<#macro title><@spring.message 'root.page.link_houses'/></#macro>
 
 <#macro content>
     <div class="page-shop-sidebar left--sidebar bg--white section-padding--lg">
@@ -9,9 +9,9 @@
                 <div class="col-lg-3 col-12 order-2 order-lg-1 md-mt-40 sm-mt-40">
                     <div class="shop__sidebar">
                         <aside class="wedget__categories pro--range">
-                            <h3 class="wedget__title">Поиск дома</h3>
+                            <h3 class="wedget__title"><@spring.message 'houses.page.search'/></h3>
                             <div class="single-contact-form">
-                                <input type="text" id="query" oninput="f()" placeholder="Введите название">
+                                <input type="text" id="query" oninput="f()" placeholder=<@spring.message 'houses.page.enter'/>>
                             </div>
 
                         </aside>

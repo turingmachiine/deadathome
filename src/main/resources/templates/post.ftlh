@@ -31,7 +31,7 @@
                             </div>
                         </article>
                         <div class="comments_area">
-                            <h3 class="comment__title">Комментарии</h3>
+                            <h3 class="comment__title"><@spring.message 'post.page.comments'/></h3>
                             <ul class="comment__list">
                                 <#if comments?has_content>
                                 <#list comments as comment>
@@ -51,19 +51,19 @@
                                 </li>
                                 </#list>
                                 <#else>
-                                    <h4>Нет комментариев</h4>
+                                    <h4><@spring.message 'post.page.no_comments'/></h4>
                                 </#if>
                             </ul>
                         </div>
                         <#if user?has_content>
                         <div class="comment_respond mt--20">
-                            <h3 class="reply_title">Оставьте комментарий</h3>
+                            <h3 class="reply_title"><@spring.message 'post.page.comment'/></h3>
                             <form class="comment__form" action="/comment${post.id}" method="post">
                                 <div class="input__box">
                                     <textarea name="commentText"></textarea>
                                 </div>
                                 <div class="form__btn1">
-                                    <button>Отправить</button>
+                                    <button><@spring.message 'post.page.btn'/></button>
                                 </div>
                             </form>
                         </div>
@@ -76,7 +76,7 @@
                         <!-- End Single Widget -->
                         <!-- Start Single Widget -->
                         <aside class="widget recent_widget">
-                            <h3 class="widget-title">Другие посты о доме</h3>
+                            <h3 class="widget-title"><@spring.message 'post.page.other'/></h3>
                             <div class="recent-posts">
                                 <ul>
                                     <#if otherPosts?has_content>
@@ -84,7 +84,7 @@
                                     <li>
                                         <div class="post-wrapper d-flex">
                                             <div class="thumb">
-                                                <a href="/post?id=${p.id}">
+                                                <a href="/post${p.id}">
                                                     <#if p.fileInfo?has_content>
                                                         <img src="files/${p.fileInfo.storageFileName}" alt="no photo"></a>
                                                     <#else>

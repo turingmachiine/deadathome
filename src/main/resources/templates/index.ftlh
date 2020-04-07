@@ -1,6 +1,6 @@
 <#include "base.ftlh"/>
 
-<#macro title>Дед дома</#macro>
+<#macro title><@spring.message 'root.page.app_name_first'/> <@spring.message 'root.page.app_name_second'/></#macro>
 
 <#macro content>
     <section class="wn__recent__post bg--gray ptb--80">
@@ -8,8 +8,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section__title text-center">
-                        <h2 class="title__be--2"><a href="/posts"><span class="color--theme">Обсуди</span></a> чтобы не забыть</h2>
-                        <p>На нашем сайте можно найти отличные посты, рассказывающие о домах престарелых</p>
+                        <h2 class="title__be--2"><a href="/posts"><span class="color--theme"><@spring.message 'root.page.top_posts_link'/></span></a> <@spring.message 'root.page.top_posts_text'/></h2>
+                        <p><@spring.message 'root.page.top_posts_text_lower'/></p>
                     </div>
                 </div>
             </div>
@@ -31,11 +31,5 @@
             </#if>
         </div>
     </section>
-    <!-- End Recent Post Area -->
-    <!-- Best Sale Area -->
-    <!-- Best Sale Area Area -->
-    <!-- Footer Area -->
-
 </#macro>
-
 <@main/>

@@ -31,7 +31,7 @@
                                     </div>
                                     <div class="product__overview">
                                         <div class="form__btn1">
-                                            <button type="button" onclick="document.location='/edit'">Редактировать профиль</button>
+                                            <button type="button" onclick="document.location='/edit'"><@spring.message 'profile.page.edit'/></button>
                                         </div>
                                         <p></p>
                                     </div>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="wn__related__product pt--80 pb--50">
                         <div class="section__title text-center">
-                            <h2 class="title__be--2">Ваши дома</h2>
+                            <h2 class="title__be--2"><@spring.message 'profile.page.houses'/></h2>
                         </div>
                         <div class="row mt--60">
                             <div class="productcategory__slide--2 arrows_style owl-carousel owl-theme">
@@ -98,7 +98,7 @@
                 <div class="col-lg-3 col-12 md-mt-40 sm-mt-40">
                     <div class="shop__sidebar">
                         <aside class="wedget__categories poroduct--cat">
-                            <h3 class="wedget__title">Посты с вашими комментариями</h3>
+                            <h3 class="wedget__title"><@spring.message 'profile.page.posts'/></h3>
                             <ul>
                                 <#if posts?has_content>
                                     <#list posts as p>

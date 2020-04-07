@@ -1,5 +1,5 @@
 <#include "base.ftlh"/>
-<#macro title>Edit</#macro>
+<#macro title><@spring.message 'root.page.link_create_house'/></#macro>
 
 <#macro content>
     <section class="wn_contact_area bg--white pt--80">
@@ -7,20 +7,20 @@
             <div class="row">
                 <div class="col-lg-8 col-12">
                     <div class="contact-form-wrap">
-                        <h2 class="contact__title">Опубликуйте дом</h2>
+                        <h2 class="contact__title"><@spring.message 'create_house.page.main'/></h2>
                         <form action="/create_house" method="post" enctype="multipart/form-data">
                             <div class="single-contact-form">
-                                <input type="text" name="houseName" placeholder="Имя дома">
+                                <input type="text" name="houseName" placeholder=<@spring.message 'root.page.link_create_house'/> >
                             </div>
                             <div class="single-contact-form message">
-                                <textarea name="description" placeholder="Описание"></textarea>
+                                <textarea name="description" placeholder=<@spring.message 'create_house.page.decription'/>></textarea>
                             </div>
                             <div class="row">
                                 <div class ="col-lg-8">
                                     <div class="single-contact-form space-between">
-                                        <input type="text" name="latitude" placeholder="Широта">
+                                        <input type="text" name="latitude" placeholder=<@spring.message 'create_house.page.latitude'/>>
                                         x
-                                        <input type="text" name="longitude" placeholder="Долгота">
+                                        <input type="text" name="longitude" placeholder=<@spring.message 'create_house.page.longitude'/>>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
@@ -34,7 +34,7 @@
                             <div class="row">
                                 <div class ="col-lg-12">
                                     <div class="single-contact-form space-between">
-                                        <input type="text" name="city" placeholder="Город">
+                                        <input type="text" name="city" placeholder=<@spring.message 'create_house.page.city'/>>
                                     </div>
                                 </div>
                             </div>
@@ -42,12 +42,12 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                                     <div class="form__btn1">
                                         <input type="file" style="display: none;" name="file" id="profilePicture" name="file" />
-                                        <button type="button" id="btnChangePicture">Изменить фотографию</button>
+                                        <button type="button" id="btnChangePicture"><@spring.message 'edit.page.change_photo'/></button>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                                     <div class="form__btn1">
-                                        <button type="submit">Опубликовать</button>
+                                        <button type="submit"><@spring.message 'create.page.create'/></button>
                                     </div>
                                 </div>
                             </div>

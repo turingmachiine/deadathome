@@ -63,7 +63,7 @@
                     </div>
                     <div class="wn__related__product pt--80 pb--50">
                         <div class="section__title text-center">
-                            <h2 class="title__be--2">Дома этого пользователя</h2>
+                            <h2 class="title__be--2"><@spring.message 'house.page.other'/></h2>
                         </div>
                         <div class="row mt--60">
                             <div class="productcategory__slide--2 arrows_style owl-carousel  owl-theme">
