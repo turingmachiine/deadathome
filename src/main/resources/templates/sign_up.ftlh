@@ -21,8 +21,9 @@
                                     </div>
                                 </div>
                                 <div class="input__box">
-                                    <label>Email<span>*</span></label>
-                                    <input name="email" type="email" >
+                                    <label><@spring.message 'sign.page.login'/><span>*</span></label>
+                                    <input name="email" id="email"type="text" oninput="email_check()">
+                                    <label style="color: #bd2130" id="email_error"></label>
                                 </div>
                                 <div class="input__box">
                                     <label><@spring.message 'sign.page.form.pass'/><span>*</span></label>
@@ -41,7 +42,7 @@
                                     <input name="lastName" type="text">
                                 </div>
                                 <div class="form__btn mx-auto">
-                                    <button type="submit"><@spring.message 'sign.page.form.btn'/></button>
+                                    <button type="submit" id="form_btn"><@spring.message 'sign.page.form.btn'/></button>
                                 </div>
 
                             </div>

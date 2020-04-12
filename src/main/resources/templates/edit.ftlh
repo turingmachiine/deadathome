@@ -23,8 +23,8 @@
                                     </div>
                                     <div class="col-lg-6 col-12">
                                         <div class="input__box">
-                                            <label>Email<span>*</span></label>
-                                            <input type="email" name="email" value="${user.email}">
+                                            <label><@spring.message 'sign.page.login'/><span>*</span></label>
+                                            <input type="text" id="email" onclick="email_check()" name="email" value="${user.email}">
                                         </div>
                                         <div class="input__box">
                                             <label><@spring.message 'sign.page.form.first_name'/><span>*</span></label>
@@ -43,7 +43,7 @@
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                                                 <div class="form__btn">
-                                                    <button type="submit"><@spring.message 'edit.page.btn_sbt'/></button>
+                                                    <button type="submit" id="form_btn"><@spring.message 'edit.page.btn_sbt'/></button>
                                                 </div>
                                             </div>
                                         </div>

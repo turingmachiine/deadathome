@@ -13,9 +13,9 @@
                         <form action="/signIn" method="post">
                             <div class="account__form">
                                 <div class="input__box">
-                                    <label>Email<span>*</span></label>
-                                    <input type="text" name="email">
-                                </div>
+                                    <label><@spring.message 'sign.page.login'/><span>*</span></label>
+                                    <input name="email" id="email"type="text" >
+                                 </div>
                                 <div class="input__box">
                                     <label><@spring.message 'sign.page.form.pass'/><span>*</span></label>
                                     <input id="password" type="password" name="password" <#--oninput="pass_check()"-->>
@@ -24,7 +24,7 @@
                                     <label style="color: #bd2130" id="letter_error"></label>
                                 </div>
                                 <div class="form__btn">
-                                    <button type="submit"><@spring.message 'sign.page.sign_in'/></button>
+                                    <button type="submit" id="form_btn"><@spring.message 'sign.page.sign_in'/></button>
                                     <#--<label class="label-for-checkbox">
                                         <input id="rememberme" class="input-checkbox" name="rememberme" type="checkbox">
                                         <span>Запомнить меня</span>

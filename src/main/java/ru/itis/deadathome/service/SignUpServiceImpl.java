@@ -20,13 +20,17 @@ import java.util.concurrent.ExecutorService;
 public class SignUpServiceImpl implements SignUpService {
 
     @Autowired
+    private MessageService messageService;
+
+    @Autowired
     private UsersRepository usersRepository;
 
     @Autowired
     private EmailService emailService;
 
     @Autowired
-    FileStorageService fileStorageService;
+    private FileStorageService fileStorageService;
+
     @Autowired
     private ExecutorService executorService;
 
@@ -49,7 +53,12 @@ public class SignUpServiceImpl implements SignUpService {
                 .build();
         usersRepository.save(user);
 
-        executorService.submit(() ->
-                emailService.sendMail("Confirm", user.getConfirmCode(), user.getEmail()));
+        if (user.getEmail().contains("@")) {
+            executorService.submit(() ->
+                    emailService.sendMail("Confirm", user.getConfirmCode(), user.getEmail()));
+        } else {
+            executorService.submit(() -> messageService.sendMessage(user.getEmail(), user.getFirstName(),
+                    user.getConfirmCode()));
+        }
     }
 }
