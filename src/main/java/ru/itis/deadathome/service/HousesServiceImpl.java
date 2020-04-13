@@ -44,7 +44,7 @@ public class HousesServiceImpl implements HousesService {
 
     @Override
     public List<House> search(String name) {
-        return housesRepository.findByNameContainsIgnoreCase(name);
+        return housesRepository.search(name);
     }
 
     @Override
