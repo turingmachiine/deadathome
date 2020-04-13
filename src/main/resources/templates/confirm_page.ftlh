@@ -24,7 +24,6 @@
 
     </head>
     <body>
-
     <div class="wrapper" id="wrapper">
         <header id="wn__header" class="header__area header__absolute sticky__header">
             <div class="container-fluid">
@@ -45,11 +44,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section__title text-center pb--50">
-                            <h1 class="title__be--2">Дед <span class="color--theme">дома </span></h1>
+                            <h1 class="title__be--2"><@spring.message 'root.page.app_name_first'/> <span class="color--theme"><@spring.message 'root.page.app_name_second'/> </span></h1>
                             <#if isConfirmed == true>
-                                <p>Вы успешно подтвердили аккаунт</p>
+                                <p><@spring.message 'confirm.page.success'/></p>
                             <#else>
-                                <p>Кажется, с вашей ссылкой что-то не так</p>
+                                <p><@spring.message 'confirm.page.failed'/></p>
                             </#if>
 
                         </div>
@@ -64,16 +63,15 @@
                         <div class="col-lg-12">
                             <div class="footer__widget footer__menu">
                                 <div class="ft__logo">
-                                    <a href="/">
-                                        <img src="../images/logo6.png" alt="logo">
+                                    <a href="https://ampl.ink/dV1Yx">
+                                        <img src="images/logo6.png" alt="logo">
                                     </a>
-                                    <p>Я артист слушайте мои треки пожалуйста</p>
+                                    <p><a href="https://ampl.ink/dV1Yx"><@spring.message 'root.page.footer_text'/></a></p>
                                 </div>
                                 <div class="footer__content">
                                     <ul class="mainmenu d-flex justify-content-center">
-                                        <li><a href="/houses">Дома</a></li>
-                                        <li><a href="/posts">Посты</a></li>
-                                        <li><a href="/profile">Профиль</a></li>
+                                        <li><a href="/houses"><@spring.message 'root.page.link_houses'/></a></li>
+                                        <li><a href="/posts"><@spring.message 'root.page.link_posts'/></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -96,7 +94,6 @@
             </div>
         </footer>
     </div>
-
     <script src="../js/vendor/jquery-3.2.1.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>

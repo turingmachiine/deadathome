@@ -24,7 +24,6 @@
 
     </head>
     <body>
-
     <div class="wrapper" id="wrapper">
         <header id="wn__header" class="header__area header__absolute sticky__header">
             <div class="container-fluid">
@@ -125,9 +124,7 @@
                 </div>
             </div>
         </section>
-
         <@content/>
-
         <footer id="wn__footer" class="footer__area bg__cat--8 brown--color">
             <div class="footer-static-top">
                 <div class="container">
@@ -169,7 +166,6 @@
             </div>
         </footer>
     </div>
-
     <script src="js/vendor/jquery-3.2.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
