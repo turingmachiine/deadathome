@@ -3,12 +3,15 @@ package ru.itis.deadathome.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.itis.deadathome.dto.PostCreationDto;
+import ru.itis.deadathome.dto.PostDto;
 import ru.itis.deadathome.models.House;
 import ru.itis.deadathome.models.Post;
 import ru.itis.deadathome.repositories.PostsRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static ru.itis.deadathome.dto.PostDto.from;
 
 @Service
 public class PostsServiceImpl implements PostsService {
@@ -19,28 +22,28 @@ public class PostsServiceImpl implements PostsService {
     private PostsRepository postsRepository;
 
     @Override
-    public List<Post> getPosts() {
-        return postsRepository.findAll();
+    public List<PostDto> getPosts() {
+        return from(postsRepository.findAll());
     }
 
     @Override
-    public Post getConcretePost(Long postId) {
-        return postsRepository.getOne(postId);
+    public PostDto getConcretePost(Long postId) {
+        return from(postsRepository.getOne(postId));
     }
 
     @Override
-    public List<Post> search(String name) {
+    public List<PostDto> search(String name) {
         return null;
     }
 
     @Override
-    public List<Post> getPostsAboutHouse(House house) {
-        return postsRepository.findByHouse(house);
+    public List<PostDto> getPostsAboutHouse(House house) {
+        return from(postsRepository.findByHouse(house));
     }
 
     @Override
-    public List<Post> getOtherPostsAboutHouse(House house, Long id) {
-        return postsRepository.findByHouseAndIdIsNot(house, id);
+    public List<PostDto> getOtherPostsAboutHouse(House house, Long id) {
+        return from(postsRepository.findByHouseAndIdIsNot(house, id));
     }
 
     @Override

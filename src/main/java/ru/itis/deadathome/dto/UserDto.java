@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.itis.deadathome.models.FileInfo;
 import ru.itis.deadathome.models.User;
 
 import java.time.format.DateTimeFormatter;
@@ -20,6 +21,7 @@ public class UserDto {
     private String lastName;
     private String email;
     private String createdAt;
+    FileInfo profilePic;
 
     public static UserDto from(User user) {
         return UserDto.builder()
@@ -28,6 +30,7 @@ public class UserDto {
                 .lastName(user.getLastName())
                 .email(user.getEmail())
                 .createdAt(user.getCreatedAt().format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm")))
+                .profilePic(user.getProfilePic())
                 .build();
     }
 

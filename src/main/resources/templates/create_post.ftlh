@@ -1,7 +1,7 @@
 <#include "base.ftlh">
 
 <#macro title><@spring.message 'root.page.link_create_post'/></#macro>
-
+<#macro connect></#macro>
 <#macro content>
     <h2 class="contact__title text-center"><@spring.message 'root.page.link_create_post'/></h2>
     <section class="wn_contact_area bg--white pt--80 pb--40">

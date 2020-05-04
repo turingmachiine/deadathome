@@ -29,6 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/edit").authenticated()
                 .antMatchers("/create_house").authenticated()
                 .antMatchers("/create_post").authenticated()
+                .antMatchers("/flud").authenticated()
+                .antMatchers("/chat").permitAll()
                 .antMatchers("/searchHouses").permitAll()
                 .antMatchers("/").permitAll()
                 .antMatchers("/posts").permitAll()

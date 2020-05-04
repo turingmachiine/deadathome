@@ -1,7 +1,7 @@
 <#include "base.ftlh"/>
 
 <#macro title>${user.firstName}</#macro>
-
+<#macro connect></#macro>
 <#macro content>
     <div class="maincontent bg--white pt--80 pb--55">
         <div class="container">

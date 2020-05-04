@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.itis.deadathome.dto.CommentAddDto;
-import ru.itis.deadathome.dto.PostCreationDto;
+import ru.itis.deadathome.dto.*;
 import ru.itis.deadathome.models.Comment;
 import ru.itis.deadathome.models.House;
 import ru.itis.deadathome.models.Post;
 import ru.itis.deadathome.models.User;
+import ru.itis.deadathome.repositories.HousesRepository;
+import ru.itis.deadathome.repositories.PostsRepository;
 import ru.itis.deadathome.security.UserDetailsImpl;
 import ru.itis.deadathome.service.CommentsService;
 import ru.itis.deadathome.service.HousesService;
@@ -25,6 +26,12 @@ import java.util.List;
 public class PostController {
     @Autowired
     private HousesService housesService;
+
+    @Autowired
+    private HousesRepository housesRepository;
+
+    @Autowired
+    private PostsRepository postsRepository;
 
     @Autowired
     private PostsService postsService;
@@ -39,13 +46,13 @@ public class PostController {
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             model.addAttribute("user", userDetails.getUser());
         }
-        List<House> houses = housesService.getHouses();
+        List<HousesDto> houses = housesService.getHouses();
         model.addAttribute("houses", houses);
         if (houseId != -1) {
-            List<Post> posts = postsService.getPostsAboutHouse(housesService.getConcreteHouse(houseId));
+            List<PostDto> posts = postsService.getPostsAboutHouse(housesRepository.getOne(houseId));
             model.addAttribute("posts", posts);
         } else {
-            List<Post> posts = postsService.getPosts();
+            List<PostDto> posts = postsService.getPosts();
             model.addAttribute("posts", posts);
         }
         return "posts";
@@ -58,9 +65,10 @@ public class PostController {
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             model.addAttribute("user", userDetails.getUser());
         }
-        Post post = postsService.getConcretePost(postId);
-        List<Post> posts = postsService.getOtherPostsAboutHouse(post.getHouse(), postId);
-        List<Comment> comments = commentsService.findByPost(post);
+        PostDto post = postsService.getConcretePost(postId);
+        List<PostDto> posts = postsService.getOtherPostsAboutHouse(housesRepository.getOne(post.getHouse().getId()),
+                postId);
+        List<CommentDto> comments = commentsService.findByPost(postsRepository.getOne(post.getId()));
         model.addAttribute("post", post);
         model.addAttribute("comments", comments);
         model.addAttribute("otherPosts", posts);
@@ -73,7 +81,7 @@ public class PostController {
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             model.addAttribute("user", userDetails.getUser());
         }
-        List<House> houses = housesService.getHouses();
+        List<HousesDto> houses = housesService.getHouses();
         model.addAttribute("houses", houses);
         return "create_post";
     }
@@ -84,7 +92,7 @@ public class PostController {
         User user = userDetails.getUser();
         postDto.setUser(user);
         if (!postDto.getHouseName().equals("Никакой")) {
-            postDto.setHouse(housesService.getConcreteHouse(postDto.getHouseName()));
+            postDto.setHouse(housesRepository.getOne(housesService.getConcreteHouse(postDto.getHouseName()).getId()));
         }
         Long id = postsService.create(postDto);
         return "redirect:/post" + id;
@@ -95,7 +103,7 @@ public class PostController {
                              @PathVariable("post-id") Long postId, CommentAddDto commentAddDto) {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         User user = userDetails.getUser();
-        commentAddDto.setPost(postsService.getConcretePost(postId));
+        commentAddDto.setPost(postsRepository.getOne(postsService.getConcretePost(postId).getId()));
         commentAddDto.setUser(user);
         commentsService.addComment(commentAddDto);
         return "redirect:/post" + postId;

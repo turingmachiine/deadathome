@@ -1,7 +1,7 @@
 <#include "base.ftlh"/>
 
 <#macro title><@spring.message 'sign.page.sign_up'/></#macro>
-
+<#macro connect></#macro>
 <#macro content>
 
     <section class="my_account_area pt--80 pb--55 bg--white">

@@ -1,7 +1,7 @@
 <#include "base.ftlh">
 
 <#macro title><@spring.message 'root.page.link_houses'/></#macro>
-
+<#macro connect></#macro>
 <#macro content>
     <div class="page-shop-sidebar left--sidebar bg--white section-padding--lg">
         <div class="container">

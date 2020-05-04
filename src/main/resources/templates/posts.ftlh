@@ -1,7 +1,7 @@
 <#include "base.ftlh">
 
 <#macro title><@spring.message 'root.page.link_posts'/></#macro>
-
+<#macro connect></#macro>
 <#macro content>
         <div class="page-blog bg--white section-padding--lg blog-sidebar right-sidebar">
         	<div class="container">

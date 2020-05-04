@@ -1,21 +1,22 @@
 package ru.itis.deadathome.service;
 
 import ru.itis.deadathome.dto.PostCreationDto;
+import ru.itis.deadathome.dto.PostDto;
 import ru.itis.deadathome.models.House;
 import ru.itis.deadathome.models.Post;
 
 import java.util.List;
 
 public interface PostsService {
-    List<Post> getPosts();
+    List<PostDto> getPosts();
 
-    Post getConcretePost(Long postId);
+    PostDto getConcretePost(Long postId);
 
-    List<Post> search(String name);
+    List<PostDto> search(String name);
 
-    List<Post> getPostsAboutHouse(House house);
+    List<PostDto> getPostsAboutHouse(House house);
 
-    List<Post> getOtherPostsAboutHouse(House house, Long id);
+    List<PostDto> getOtherPostsAboutHouse(House house, Long id);
 
     Long create(PostCreationDto postDto);
 

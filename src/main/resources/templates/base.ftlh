@@ -23,7 +23,7 @@
 
 
     </head>
-    <body>
+    <body onload=<@connect/>>
     <div class="wrapper" id="wrapper">
         <header id="wn__header" class="header__area header__absolute sticky__header">
             <div class="container-fluid">
@@ -45,6 +45,7 @@
                                 <#if user?has_content>
                                     <li><a href="/create_house"><@spring.message 'root.page.link_create_house'/></a></li>
                                     <li><a href="/create_post"><@spring.message 'root.page.link_create_post'/></a></li>
+                                    <li><a href="/flud"><@spring.message 'root.page.link_chat'/></a></li>
                                 </#if>
                             </ul>
                         </nav>

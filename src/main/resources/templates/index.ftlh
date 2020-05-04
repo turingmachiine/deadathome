@@ -2,6 +2,7 @@
 
 <#macro title><@spring.message 'root.page.app_name_first'/> <@spring.message 'root.page.app_name_second'/></#macro>
 
+<#macro connect></#macro>
 <#macro content>
     <section class="wn__recent__post bg--gray ptb--80">
         <div class="container">

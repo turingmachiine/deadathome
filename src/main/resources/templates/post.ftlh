@@ -1,7 +1,7 @@
 <#include "base.ftlh">
 
 <#macro title>${post.title}</#macro>
-
+<#macro connect></#macro>
 <#macro content>
     <div class="page-blog-details section-padding--lg bg--white">
         <div class="container">
@@ -35,20 +35,7 @@
                             <ul class="comment__list">
                                 <#if comments?has_content>
                                 <#list comments as comment>
-                                <li>
-                                    <div class="wn__comment">
-                                        <div class="thumb">
-                                            <img src="files/${comment.user.profilePic.storageFileName}" width="50px" height="50px" alt="no photo">
-                                        </div>
-                                        <div class="content">
-                                            <div class="comnt__author d-block d-sm-flex">
-                                                <span>${comment.user.firstName} ${comment.user.lastName}</span>
-                                                <span>${comment.createdAt}</span>
-                                            </div>
-                                            <p>${comment.commentText}</p>
-                                        </div>
-                                    </div>
-                                </li>
+
                                 </#list>
                                 <#else>
                                     <h4><@spring.message 'post.page.no_comments'/></h4>

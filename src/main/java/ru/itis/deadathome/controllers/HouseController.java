@@ -6,9 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.deadathome.dto.HouseCreationDto;
+import ru.itis.deadathome.dto.HousesDto;
 import ru.itis.deadathome.models.House;
 import ru.itis.deadathome.models.HouseClass;
 import ru.itis.deadathome.models.User;
+import ru.itis.deadathome.repositories.UsersRepository;
 import ru.itis.deadathome.security.UserDetailsImpl;
 import ru.itis.deadathome.service.HousesService;
 
@@ -18,7 +20,10 @@ import java.util.List;
 public class HouseController {
 
     @Autowired
-    HousesService housesService;
+    private HousesService housesService;
+
+    @Autowired
+    private UsersRepository usersRepository;
 
     @GetMapping("/houses")
     public String getHousesPage(Model model, Authentication authentication) {
@@ -26,7 +31,7 @@ public class HouseController {
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             model.addAttribute("user", userDetails.getUser());
         }
-        List<House> houses = housesService.getHouses();
+        List<HousesDto> houses = housesService.getHouses();
         model.addAttribute("houses", houses);
         return "houses";
     }
@@ -38,9 +43,10 @@ public class HouseController {
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             model.addAttribute("user", userDetails.getUser());
         }
-        House house = housesService.getConcreteHouse(houseId);
+        HousesDto house = housesService.getConcreteHouse(houseId);
         model.addAttribute("house", house);
-        model.addAttribute("otherHouses", housesService.getOtherHouses(house.getCreator(), houseId));
+        model.addAttribute("otherHouses", housesService.getOtherHouses(usersRepository.getOne(house.
+                getCreator().getId()), houseId));
         return "house";
     }
 
@@ -63,7 +69,7 @@ public class HouseController {
 
     @GetMapping("/searchHouses")
     @ResponseBody
-    public List<House> searchHouses(@RequestParam("name") String name) {
+    public List<HousesDto> searchHouses(@RequestParam("name") String name) {
         return housesService.search(name);
     }
 }

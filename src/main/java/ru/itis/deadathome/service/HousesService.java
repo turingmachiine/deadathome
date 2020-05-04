@@ -1,21 +1,22 @@
 package ru.itis.deadathome.service;
 
 import ru.itis.deadathome.dto.HouseCreationDto;
+import ru.itis.deadathome.dto.HousesDto;
 import ru.itis.deadathome.models.House;
 import ru.itis.deadathome.models.User;
 
 import java.util.List;
 
 public interface HousesService {
-    List<House> getHouses();
+    List<HousesDto> getHouses();
 
-    House getConcreteHouse(String name);
+    HousesDto getConcreteHouse(String name);
 
-    House getConcreteHouse(Long houseId);
+    HousesDto getConcreteHouse(Long houseId);
 
-    List<House> search(String name);
+    List<HousesDto> search(String name);
 
-    List<House> getOtherHouses(User user, Long houseId);
+    List<HousesDto> getOtherHouses(User user, Long houseId);
 
     Long create(HouseCreationDto houseDto);
 

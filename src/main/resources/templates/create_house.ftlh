@@ -1,6 +1,6 @@
 <#include "base.ftlh"/>
 <#macro title><@spring.message 'root.page.link_create_house'/></#macro>
-
+<#macro connect></#macro>
 <#macro content>
     <section class="wn_contact_area bg--white pt--80">
         <div class="container">

@@ -3,6 +3,7 @@ package ru.itis.deadathome.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.itis.deadathome.dto.HouseCreationDto;
+import ru.itis.deadathome.dto.HousesDto;
 import ru.itis.deadathome.models.House;
 import ru.itis.deadathome.models.HouseClass;
 import ru.itis.deadathome.models.Location;
@@ -13,6 +14,8 @@ import ru.itis.deadathome.repositories.LocationsRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+
+import static ru.itis.deadathome.dto.HousesDto.from;
 
 @Service
 public class HousesServiceImpl implements HousesService {
@@ -27,29 +30,30 @@ public class HousesServiceImpl implements HousesService {
     private HousesRepository housesRepository;
 
     @Override
-    public List<House> getHouses() {
-        return housesRepository.findAll();
+    public List<HousesDto> getHouses() {
+        return from(housesRepository.findAll());
     }
 
     @Override
-    public House getConcreteHouse(String name) {
+    public HousesDto getConcreteHouse(String name) {
         Optional<House> houseOptional = housesRepository.findByNameIgnoreCase(name);
-        return houseOptional.orElse(null);
+        return houseOptional.map(HousesDto::from).orElse(null);
     }
 
     @Override
-    public House getConcreteHouse(Long houseId) {
-        return housesRepository.getOne(houseId);
+    public HousesDto getConcreteHouse(Long houseId) {
+        return from(housesRepository.getOne(houseId));
+    }
+
+
+    @Override
+    public List<HousesDto> search(String name) {
+        return from(housesRepository.search(name));
     }
 
     @Override
-    public List<House> search(String name) {
-        return housesRepository.search(name);
-    }
-
-    @Override
-    public List<House> getOtherHouses(User user, Long houseId) {
-        return housesRepository.findByCreatorAndIdIsNot(user, houseId);
+    public List<HousesDto> getOtherHouses(User user, Long houseId) {
+        return from(housesRepository.findByCreatorAndIdIsNot(user, houseId));
     }
 
     @Override
