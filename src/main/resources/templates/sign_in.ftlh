@@ -18,6 +18,7 @@
                                  </div>
                                 <div class="input__box">
                                     <label><@spring.message 'sign.page.form.pass'/><span>*</span></label>
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                     <input id="password" type="password" name="password" <#--oninput="pass_check()"-->>
                                     <label style="color: #bd2130" id="length_error"></label>
                                     <label style="color: #bd2130" id="num_error"></label>
@@ -25,11 +26,11 @@
                                 </div>
                                 <div class="form__btn">
                                     <button type="submit" id="form_btn"><@spring.message 'sign.page.sign_in'/></button>
-                                    <#--<label class="label-for-checkbox">
-                                        <input id="rememberme" class="input-checkbox" name="rememberme" type="checkbox">
+                                    <label class="label-for-checkbox">
+                                        <input id="rememberme" class="input-checkbox" name="remember-me" type="checkbox">
                                         <span>Запомнить меня</span>
                                     </label>
-                                --></div>
+                                </div>
                             </div>
                         </form>
                     </div>
