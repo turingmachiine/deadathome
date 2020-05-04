@@ -38,7 +38,22 @@
         					    </article>
                                 </#list>
         					<!-- End Single Post -->
-        				</div>
+        					<#if canListBack>
+								<#if houseId??>
+									<a href="/posts?houseId=${houseId}&page=${page - 1}"><p>Назад</p></a>
+								<#else>
+									<a href="/posts?page=${page - 1}"><p>Назад</p></a>
+								</#if>
+        					</#if>
+							<#if canListForward>
+								<#if houseId??>
+									<a href="/posts?houseId=${houseId}&page=${page + 1}"><p>Вперед</p></a>
+								<#else>
+									<a href="/posts?page=${page + 1}"><p>Вперед</p></a>
+								</#if>
+							</#if>
+
+						</div>
         			</div>
         			<div class="col-lg-3 col-12 md-mt-40 sm-mt-40">
         				<div class="wn__sidebar">

@@ -2,6 +2,7 @@ package ru.itis.deadathome.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,19 +42,37 @@ public class PostController {
 
     @GetMapping("/posts")
     public String getPostsPage(Model model, Authentication authentication, @RequestParam(value = "house_id",
-            defaultValue = "-1") Long houseId) {
+            defaultValue = "-1") Long houseId, @RequestParam(value = "page", defaultValue = "0") Integer page) {
+        model.addAttribute("page", page);
+        if (page.equals(0)) {
+            model.addAttribute("canListBack", false);
+        } else {
+            model.addAttribute("canListBack", true);
+        }
         if (authentication != null) {
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             model.addAttribute("user", userDetails.getUser());
+
         }
         List<HousesDto> houses = housesService.getHouses();
         model.addAttribute("houses", houses);
         if (houseId != -1) {
-            List<PostDto> posts = postsService.getPostsAboutHouse(housesRepository.getOne(houseId));
-            model.addAttribute("posts", posts);
+            model.addAttribute("houseId", houseId);
+            PostsSearchResult posts = postsService.getPostsAboutHouse(housesRepository.getOne(houseId), page);
+            model.addAttribute("posts", posts.getPosts());
+            if (page.equals(posts.getCount() - 1)) {
+                model.addAttribute("canListForward", false);
+            } else {
+                model.addAttribute("canListForward", true);
+            }
         } else {
-            List<PostDto> posts = postsService.getPosts();
-            model.addAttribute("posts", posts);
+            PostsSearchResult posts = postsService.getPosts(page);
+            model.addAttribute("posts", posts.getPosts());
+            if (page.equals(posts.getCount() - 1)) {
+                model.addAttribute("canListForward", false);
+            } else {
+                model.addAttribute("canListForward", true);
+            }
         }
         return "posts";
     }

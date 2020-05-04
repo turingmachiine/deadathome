@@ -25,7 +25,7 @@ public class RootController {
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             model.addAttribute("user", userDetails.getUser());
         }
-        List<PostDto> posts = postsService.getPosts();
+        List<PostDto> posts = postsService.getPosts(0).getPosts();
         model.addAttribute("topPosts", posts);
         return "index";
     }

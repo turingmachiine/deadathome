@@ -1,9 +1,12 @@
 package ru.itis.deadathome.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ru.itis.deadathome.dto.PostCreationDto;
 import ru.itis.deadathome.dto.PostDto;
+import ru.itis.deadathome.dto.PostsSearchResult;
 import ru.itis.deadathome.models.House;
 import ru.itis.deadathome.models.Post;
 import ru.itis.deadathome.repositories.PostsRepository;
@@ -22,8 +25,13 @@ public class PostsServiceImpl implements PostsService {
     private PostsRepository postsRepository;
 
     @Override
-    public List<PostDto> getPosts() {
-        return from(postsRepository.findAll());
+    public PostsSearchResult getPosts(Integer page) {
+        PageRequest pageRequest = PageRequest.of(page, 3);
+        Page<Post> pageResult = postsRepository.findAll(pageRequest);
+        return PostsSearchResult.builder()
+                .posts(from(pageResult.getContent()))
+                .count(pageResult.getTotalPages())
+                .build();
     }
 
     @Override
@@ -37,8 +45,13 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
-    public List<PostDto> getPostsAboutHouse(House house) {
-        return from(postsRepository.findByHouse(house));
+    public PostsSearchResult getPostsAboutHouse(House house, Integer page) {
+        PageRequest pageRequest = PageRequest.of(page, 3);
+        Page<Post> pageResult = postsRepository.findByHouse(house, pageRequest);
+        return PostsSearchResult.builder()
+                .posts(from(pageResult.getContent()))
+                .count(pageResult.getTotalPages())
+                .build();
     }
 
     @Override
