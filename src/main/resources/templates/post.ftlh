@@ -35,7 +35,20 @@
                             <ul class="comment__list">
                                 <#if comments?has_content>
                                 <#list comments as comment>
-
+                                    <li>
+                                        <div class="wn__comment">
+                                            <div class="thumb">
+                                                <img src="files/${comment.user.profilePic.storageFileName}" width="50px" height="50px" alt="no photo">
+                                            </div>
+                                            <div class="content">
+                                                <div class="comnt__author d-block d-sm-flex">
+                                                    <span>${comment.user.firstName} ${comment.user.lastName}</span>
+                                                    <span>${comment.createdAt}</span>
+                                                </div>
+                                                <p>${comment.commentText}</p>
+                                            </div>
+                                        </div>
+                                    </li>
                                 </#list>
                                 <#else>
                                     <h4><@spring.message 'post.page.no_comments'/></h4>
@@ -47,6 +60,7 @@
                             <h3 class="reply_title"><@spring.message 'post.page.comment'/></h3>
                             <form class="comment__form" action="/comment${post.id}" method="post">
                                 <div class="input__box">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                     <textarea name="commentText"></textarea>
                                 </div>
                                 <div class="form__btn1">

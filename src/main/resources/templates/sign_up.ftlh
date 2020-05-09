@@ -26,6 +26,7 @@
                                     <label style="color: #bd2130" id="email_error"></label>
                                 </div>
                                 <div class="input__box">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                     <label><@spring.message 'sign.page.form.pass'/><span>*</span></label>
                                     <input id="password" type="password" name="password" oninput="pass_check()">
                                     <label style="color: #bd2130" id="length_error"></label>
