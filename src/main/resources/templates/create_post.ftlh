@@ -10,6 +10,7 @@
                 <div class="col-lg-8 col-12">
                     <div class="contact-form-wrap">
                         <form action="/create_post" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             <div class="single-contact-form">
                                 <input type="text" name="title" placeholder=<@spring.message 'create.page.name'/>>
                             </div>

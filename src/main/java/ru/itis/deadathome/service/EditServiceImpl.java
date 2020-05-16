@@ -1,7 +1,13 @@
 package ru.itis.deadathome.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.itis.deadathome.dto.EditDto;
@@ -34,5 +40,11 @@ public class EditServiceImpl implements EditService {
             user.setProfilePic(fileStorageService.saveFile(form.getProfilePic()));
         }
         usersRepository.save(user);
+        UserDetails newUserDetails = new UserDetailsImpl(user);
+        Authentication newAuth = new UsernamePasswordAuthenticationToken(newUserDetails,
+                authentication.getCredentials(), authentication.getAuthorities());
+
+        SecurityContextHolder.getContext().setAuthentication(newAuth);
+
     }
 }

@@ -9,8 +9,16 @@
                 <div class="wn__single__product">
                     <div class="row justify-content-center">
                         <div class="product__info__main">
+                            <style>
+                                .error {
+                                    color: #ff0000;
+                                }
+                            </style>
                             <h1><@spring.message 'edit.page.main'/></h1>
+                            <@spring.bind "editForm"/>
                             <form class="account__form" action="/edit" method="post" enctype="multipart/form-data">
+
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                 <div class="row">
                                     <div class="col-lg-6 col-12">
                                         <div class="image-container">
@@ -24,7 +32,12 @@
                                     <div class="col-lg-6 col-12">
                                         <div class="input__box">
                                             <label><@spring.message 'sign.page.login'/><span>*</span></label>
-                                            <input type="text" id="email" onclick="email_check()" name="email" value="${user.email}">
+                                            <@spring.formInput "editForm.email"/>
+                                            <@spring.showErrors "editForm.email","error"/>
+                                            <#if hasErrors??>
+                                                <div class="error"><@spring.message 'errors.incorrect.email'/></div>
+                                            </#if>
+                                            <#--<input type="text" id="email" &lt;#&ndash;onclick="email_check()"&ndash;&gt; name="email" value="${user.email}">-->
                                         </div>
                                         <div class="input__box">
                                             <label><@spring.message 'sign.page.form.first_name'/><span>*</span></label>

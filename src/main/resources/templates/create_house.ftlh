@@ -9,6 +9,7 @@
                     <div class="contact-form-wrap">
                         <h2 class="contact__title"><@spring.message 'create_house.page.main'/></h2>
                         <form action="/create_house" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             <div class="single-contact-form">
                                 <input type="text" name="houseName" placeholder=<@spring.message 'root.page.link_create_house'/> >
                             </div>
