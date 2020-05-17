@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.deadathome.dto.HouseCreationDto;
 import ru.itis.deadathome.dto.HousesDto;
-import ru.itis.deadathome.models.House;
 import ru.itis.deadathome.models.HouseClass;
 import ru.itis.deadathome.models.User;
 import ru.itis.deadathome.repositories.UsersRepository;

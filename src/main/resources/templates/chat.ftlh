@@ -34,7 +34,7 @@
 <script>
     var webSocket;
     function connect() {
-        webSocket = new WebSocket('ws://localhost:8000/chat');
+        webSocket = new WebSocket('ws://localhost:8080/chat');
 
         document.cookie = 'X-Authorization=' + '123456' + ';path=/';
 

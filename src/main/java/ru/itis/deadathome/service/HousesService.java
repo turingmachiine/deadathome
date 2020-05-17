@@ -10,7 +10,7 @@ import java.util.List;
 public interface HousesService {
     List<HousesDto> getHouses();
 
-    HousesDto getConcreteHouse(String name);
+    HousesDto getConcreteHouseByName(String name);
 
     HousesDto getConcreteHouse(Long houseId);
 

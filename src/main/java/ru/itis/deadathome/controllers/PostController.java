@@ -2,7 +2,6 @@ package ru.itis.deadathome.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,9 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.itis.deadathome.dto.*;
-import ru.itis.deadathome.models.Comment;
-import ru.itis.deadathome.models.House;
-import ru.itis.deadathome.models.Post;
 import ru.itis.deadathome.models.User;
 import ru.itis.deadathome.repositories.HousesRepository;
 import ru.itis.deadathome.repositories.PostsRepository;
@@ -85,12 +81,14 @@ public class PostController {
             model.addAttribute("user", userDetails.getUser());
         }
         PostDto post = postsService.getConcretePost(postId);
-        List<PostDto> posts = postsService.getOtherPostsAboutHouse(housesRepository.getOne(post.getHouse().getId()),
-                postId);
+        if (post.getHouse() != null) {
+            List<PostDto> posts = postsService.getOtherPostsAboutHouse(housesRepository.getOne(post.getHouse().getId()),
+                    postId);
+            model.addAttribute("otherPosts", posts);
+        }
         List<CommentDto> comments = commentsService.findByPost(postsRepository.getOne(post.getId()));
         model.addAttribute("post", post);
         model.addAttribute("comments", comments);
-        model.addAttribute("otherPosts", posts);
         return "post";
     }
 
@@ -111,7 +109,7 @@ public class PostController {
         User user = userDetails.getUser();
         postDto.setUser(user);
         if (!postDto.getHouseName().equals("Никакой")) {
-            postDto.setHouse(housesRepository.getOne(housesService.getConcreteHouse(postDto.getHouseName()).getId()));
+            postDto.setHouse(housesRepository.getOne(housesService.getConcreteHouseByName(postDto.getHouseName()).getId()));
         }
         Long id = postsService.create(postDto);
         return "redirect:/post" + id;

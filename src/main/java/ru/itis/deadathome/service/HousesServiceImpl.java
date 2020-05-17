@@ -35,7 +35,7 @@ public class HousesServiceImpl implements HousesService {
     }
 
     @Override
-    public HousesDto getConcreteHouse(String name) {
+    public HousesDto getConcreteHouseByName(String name) {
         Optional<House> houseOptional = housesRepository.findByNameIgnoreCase(name);
         return houseOptional.map(HousesDto::from).orElse(null);
     }

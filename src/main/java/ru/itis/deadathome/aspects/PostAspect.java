@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import ru.itis.deadathome.dto.HousesDto;
 import ru.itis.deadathome.dto.PostDto;
 import ru.itis.deadathome.repositories.PostsRepository;
-
+import ru.itis.deadathome.models.Post;
 @Aspect
 @Component
 @Slf4j
@@ -21,7 +21,8 @@ public class PostAspect {
     @After(value = "execution(* ru.itis.deadathome.service.PostsService.getConcretePost(*))")
     public void after(JoinPoint joinPoint) {
         Object[] args = joinPoint.getArgs();
-        PostDto post = PostDto.from(postsRepository.getOne((long)args[0]));
-        log.info("Был запрошен пост " + post);
+        Post post = postsRepository.getOne((long)args[0]);
+        PostDto postDto = PostDto.from(post);
+        log.info("Был запрошен пост " + postDto);
     }
 }

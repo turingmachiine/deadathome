@@ -25,15 +25,17 @@ public class PostDto {
     FileInfo fileInfo;
 
     public static PostDto from(Post post) {
-        return PostDto.builder()
+        PostDtoBuilder postDto = PostDto.builder()
                 .id(post.getId())
                 .title(post.getTitle())
                 .postText(post.getPostText())
                 .createdAt(post.getCreatedAt())
                 .author(UserDto.from(post.getAuthor()))
-                .house(HousesDto.from(post.getHouse()))
-                .fileInfo(post.getFileInfo())
-                .build();
+                .fileInfo(post.getFileInfo());
+        if (post.getHouse() != null) {
+            postDto.house(HousesDto.from(post.getHouse()));
+        }
+        return postDto.build();
     }
 
     public static List<PostDto> from(List<Post> posts) {
